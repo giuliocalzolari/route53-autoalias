@@ -5,7 +5,13 @@ resource "aws_cloudwatch_event_rule" "cw_rule" {
   event_pattern = <<PATTERN
 {
   "source": [ "aws.ec2" ],
-  "detail-type": [ "EC2 Instance State-change Notification" ]
+  "detail-type": [ "EC2 Instance State-change Notification" ],
+  "detail": {
+    "state": [
+      "running",
+      "terminated"
+    ]
+  }
 }
 PATTERN
 }
