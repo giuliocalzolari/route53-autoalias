@@ -1,0 +1,5 @@
+.terraform
+*.tfstate
+*.tfstate.backup
+.lambda_*_payload.zip
+ve-*
