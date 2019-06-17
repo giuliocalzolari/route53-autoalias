@@ -11,9 +11,11 @@ IFS=$'\n\t'
 #/    ./deploy.sh plan
 #/    ./deploy.sh apply
 #/ Actions:
-#/    plan    - Test terraform configuration
-#/    apply   - Apply terraform configuration
-#/    destroy - Destroy all resources created in terraform
+#/    init     - init configuration
+#/    validate - validate terraform file
+#/    plan     - Test terraform configuration
+#/    apply    - Apply terraform configuration
+#/    destroy  - Destroy all resources created in terraform
 #/ Options:
 #/    --help: Display this help message
 #/
@@ -59,16 +61,18 @@ terraform_init() {
 
 terraform_plan() {
     info "Running terraform plan"
-    terraform plan || error "Terraform plan failed"
+    terraform plan -out=plan.out || error "Terraform plan failed"
 }
 
 terraform_apply() {
-    info "Running terraform init"
-    terraform apply \
+    terraform_plan
+    info "Running terraform apply"
+    terraform apply  \
         -lock=true \
         -input=false \
         -refresh=true \
-        -auto-approve=true || error "Terraform apply failed"
+        -auto-approve=true \
+        ./plan.out || error "Terraform apply failed"
 }
 
 terraform_destroy() {
@@ -93,7 +97,7 @@ setup() {
     fi
 }
 
-build_src() {
+build_payloads() {
     info "Building payload files."
     local __PWD=$(pwd)
     cd src
@@ -112,6 +116,7 @@ cleanup() {
         test -f "${zipfile}" && info "Removing ${zipfile}"
         test -f "${zipfile}" && rm "${zipfile}"
     done
+    rm -rf plan.out
 }
 
 if [[ "${BASH_SOURCE[0]}" = "${0}" ]]; then
@@ -123,19 +128,19 @@ if [[ "${BASH_SOURCE[0]}" = "${0}" ]]; then
                 terraform_init
                 ;;
             "validate")
-                build_src
+                build_payloads
                 terraform_validate
                 ;;
             "plan")
-                build_src
+                build_payloads
                 terraform_plan
                 ;;
             "apply")
-                build_src
+                build_payloads
                 terraform_apply
                 ;;
             "destroy")
-                build_src
+                build_payloads
                 terraform_destroy
                 ;;
             "help")
