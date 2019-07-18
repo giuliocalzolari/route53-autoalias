@@ -3,12 +3,12 @@ provider "aws" {
 }
 
 terraform {
-  required_version = ">= 0.11.14"
+  required_version = ">= 0.12.3"
 }
 
 
 module "this" {
   source  = "giuliocalzolari/route53-autocname/aws"
-  version = "1.0.0"
+  version = "1.0.2"
 }
 
