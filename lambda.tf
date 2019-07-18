@@ -4,15 +4,9 @@ data "archive_file" "zip_lambda" {
   output_path = "${path.module}/lambda_main.zip"
 }
 
-data "null_data_source" "lambda_file" {
-  inputs {
-    filename = "${substr("${path.module}/lambda_main.zip", length(path.cwd) + 1, -1)}"
-
-  }
-}
 
 resource "aws_lambda_function" "lambda_fun" {
-  filename      = "${data.null_data_source.lambda_file.outputs.filename}"
+  filename      = "${path.module}/lambda_main.zip"
   function_name = "${var.app_name}"
   description   = "${var.app_name}"
   role          = "${aws_iam_role.lambda_role.arn}"

@@ -8,7 +8,8 @@ terraform {
 
 
 module "this" {
-  source  = "giuliocalzolari/route53-autocname/aws"
-  version = "1.0.3"
+  source = "giuliocalzolari/route53-autocname/aws"
+  # source = "../"
+  version = "1.0.4"
 }
 
