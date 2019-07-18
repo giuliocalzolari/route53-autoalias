@@ -18,11 +18,11 @@ PATTERN
 
 resource "aws_cloudwatch_event_target" "cw_rule_lambda" {
   target_id = "${aws_lambda_function.lambda_fun.handler}"
-  rule      = "${aws_cloudwatch_event_rule.cw_rule.name}"
-  arn       = "${aws_lambda_function.lambda_fun.arn}"
+  rule = "${aws_cloudwatch_event_rule.cw_rule.name}"
+  arn = "${aws_lambda_function.lambda_fun.arn}"
 }
 
 resource "aws_cloudwatch_log_group" "cwlog" {
-  name              = "/aws/lambda/${var.app_name}"
+  name = "/aws/lambda/${var.app_name}"
   retention_in_days = 14
 }

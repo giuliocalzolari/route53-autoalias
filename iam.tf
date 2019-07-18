@@ -36,16 +36,16 @@ EOF
 }
 
 resource "aws_iam_role_policy_attachment" "lambda_ec2" {
-  role       = "${aws_iam_role.lambda_role.name}"
+  role = "${aws_iam_role.lambda_role.name}"
   policy_arn = "${aws_iam_policy.lambda_policy.arn}"
 }
 
 resource "aws_iam_role_policy_attachment" "basic-exec-role" {
-  role       = "${aws_iam_role.lambda_role.name}"
+  role = "${aws_iam_role.lambda_role.name}"
   policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
 }
 
 resource "aws_iam_role_policy_attachment" "route53-role" {
-  role       = "${aws_iam_role.lambda_role.name}"
+  role = "${aws_iam_role.lambda_role.name}"
   policy_arn = "arn:aws:iam::aws:policy/AmazonRoute53AutoNamingFullAccess"
 }

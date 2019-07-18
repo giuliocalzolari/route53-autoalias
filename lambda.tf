@@ -1,5 +1,5 @@
 resource "aws_lambda_function" "lambda_fun" {
-  filename         = ".lambda_main_payload.zip"
+  filename         = "${substr("${path.module}/.lambda_main_payload.zip", length(path.cwd) + 1, -1)}"
   function_name    = "${var.app_name}"
   description      = "${var.app_name}"
   role             = "${aws_iam_role.lambda_role.arn}"
