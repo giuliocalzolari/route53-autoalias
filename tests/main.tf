@@ -1,5 +1,5 @@
 provider "aws" {
-  region = "${var.region}"
+  region = "eu-central-1"
 }
 
 terraform {
@@ -11,3 +11,4 @@ module "this" {
   source  = "giuliocalzolari/route53-autocname/aws"
   version = "1.0.0"
 }
+

@@ -13,7 +13,6 @@ Module compatible with Terraform `0.12`
 |------|-------------|:----:|:-----:|:-----:|
 | app\_name | Application Name | string | `"route53_autoalias"` | no |
 | log\_retention\_days | Cloudwatch Log Retation Days | number | `"14"` | no |
-| region | AWS Region | string | `"eu-central-1"` | no |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 

@@ -1,7 +1,3 @@
-variable "region" {
-  default     = "eu-central-1"
-  description = "AWS Region"
-}
 
 variable "app_name" {
   description = "Application Name"

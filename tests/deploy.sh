@@ -97,18 +97,18 @@ setup() {
     fi
 }
 
-build_payloads() {
-    info "Building payload files."
-    local __PWD=$(pwd)
-    cd src
-    for file in * ; do
-        local script="${file%.*}"
-        info "Adding ${file} to .lambda_${script}_payload.zip"
-        zip -r9 "../.lambda_${script}_payload.zip" "${file}" || \
-            fatal "Could not build payload files"
-    done
-    cd "${__PWD}"
-}
+# build_payloads() {
+#     info "Building payload files."
+#     local __PWD=$(pwd)
+#     cd src
+#     for file in * ; do
+#         local script="${file%.*}"
+#         info "Adding ${file} to .lambda_${script}_payload.zip"
+#         zip -r9 "../.lambda_${script}_payload.zip" "${file}" || \
+#             fatal "Could not build payload files"
+#     done
+#     cd "${__PWD}"
+# }
 
 cleanup() {
     info "Cleaning up temporary payload files."
@@ -128,19 +128,19 @@ if [[ "${BASH_SOURCE[0]}" = "${0}" ]]; then
                 terraform_init
                 ;;
             "validate")
-                build_payloads
+                # build_payloads
                 terraform_validate
                 ;;
             "plan")
-                build_payloads
+                # build_payloads
                 terraform_plan
                 ;;
             "apply")
-                build_payloads
+                # build_payloads
                 terraform_apply
                 ;;
             "destroy")
-                build_payloads
+                # build_payloads
                 terraform_destroy
                 ;;
             "help")
