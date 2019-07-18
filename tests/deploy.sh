@@ -112,10 +112,6 @@ setup() {
 
 cleanup() {
     info "Cleaning up temporary payload files."
-    for zipfile in $(find . -type f -name ".lambda_*_payload.zip") ; do
-        test -f "${zipfile}" && info "Removing ${zipfile}"
-        test -f "${zipfile}" && rm "${zipfile}"
-    done
     rm -rf plan.out
 }
 
