@@ -10,6 +10,6 @@ terraform {
 module "this" {
   source = "giuliocalzolari/route53-autocname/aws"
   # source = "../"
-  version = "1.0.4"
+  version = "1.0.5"
 }
 
